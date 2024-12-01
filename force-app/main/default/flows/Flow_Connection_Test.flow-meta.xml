@@ -8,7 +8,7 @@
         <actionName>TestFloq.ConnectToFlow</actionName>
         <actionType>externalService</actionType>
         <connector>
-            <targetReference>Result_Screen</targetReference>
+            <targetReference>tdgg</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -22,9 +22,55 @@
         <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>61.0</apiVersion>
+    <assignments>
+        <name>assa</name>
+        <label>assa</label>
+        <locationX>264</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>cereee</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>loop.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>create_accounts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>tdgg</name>
+        <label>tdgg</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>allacc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Connect_Flow.2XX.records</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop</targetReference>
+        </connector>
+    </assignments>
     <environments>Default</environments>
     <interviewLabel>Flow Connection Test {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Flow Connection Test</label>
+    <loops>
+        <name>loop</name>
+        <label>loop</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <collectionReference>allacc</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>assa</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Result_Screen</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -44,11 +90,28 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>create_accounts</name>
+        <label>create accounts</label>
+        <locationX>264</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>loop</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>cereee</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <screens>
         <name>Result_Screen</name>
         <label>Result Screen</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationY>866</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -87,7 +150,7 @@
             <targetReference>Welcome_Screen</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>acceach</name>
         <apexClass>ExternalService__TestFloq_ConnectToFlow_OUT_2XX</apexClass>
@@ -101,6 +164,13 @@
         <apexClass>ExternalService__TestFloq_ConnectToFlow_OUT_2XX_records</apexClass>
         <dataType>Apex</dataType>
         <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>cereee</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>

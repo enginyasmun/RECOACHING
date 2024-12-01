@@ -1,9 +1,75 @@
 <apex:page renderAs="pdf" standardController="Quote">
+
+
+    <!-- Header Section -->
     <h1>Quote Details</h1>
-    <p>Quote Number: {!Quote.QuoteNumber}</p>
-    <p>Quote Name: {!Quote.Name}</p>
-    <p>Account: {!Quote.Account.Name}</p>
-    <p>Total Price: {!Quote.TotalPrice}</p>
-    <p>Contact Name: {!Quote.ContactId}</p>
-    <p>Contact Email: {!Quote.Email}</p>
+    
+    <!-- Quote Information -->
+    <table class="info-table">
+        <tr>
+            <td><strong>Quote Number:</strong></td>
+            <td>{!Quote.QuoteNumber}</td>
+            <td><strong>Created Date:</strong></td>
+            <td>{!Quote.CreatedDate}</td>
+        </tr>
+        <tr>
+            <td><strong>Quote Name:</strong></td>
+            <td>{!Quote.Name}</td>
+            <td><strong>Account:</strong></td>
+            <td>{!Quote.Account.Name}</td>
+        </tr>
+        <tr>
+            <td><strong>Contact Name:</strong></td>
+            <td>{!Quote.Contact.Name}</td>
+            <td><strong>Contact Email:</strong></td>
+            <td>{!Quote.Email}</td>
+        </tr>
+    </table>
+
+    <!-- Product Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Sales Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!Quote.QuoteLineItems}" var="item">
+                <tr>
+                    <td>{!item.Product2.Name}</td>
+                    <td>{!item.Quantity}</td>
+                    <td>{!item.UnitPrice}</td>
+                    <td>{!item.TotalPrice}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+
+    <!-- Totals Section -->
+    <table class="total-section">
+        <tr>
+            <td><strong>Subtotal:</strong></td>
+            <td>{!Quote.Subtotal}</td>
+        </tr>
+        <tr>
+            <td><strong>Discount:</strong></td>
+            <td>{!Quote.Discount}</td>
+        </tr>
+        <tr>
+            <td><strong>Total Price:</strong></td>
+            <td>{!Quote.TotalPrice}</td>
+        </tr>
+        <tr>
+            <td><strong>Grand Total:</strong></td>
+            <td>{!Quote.TotalPrice}</td>
+        </tr>
+    </table>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Thank you for your business!</p>
+    </div>
 </apex:page>

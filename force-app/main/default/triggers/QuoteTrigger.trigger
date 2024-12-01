@@ -6,4 +6,3 @@ trigger QuoteTrigger on Quote (after insert) {
         QuotePDFService.generatePDF(quote.Id);
     }
 }
-
