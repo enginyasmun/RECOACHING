@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Weather Information" icon-name="utility:world">
+        <div class="slds-p-around_medium">
+            <p if:true={greeting}><b>Hello, {greeting}!</b></P>
+            <lightning-input label="City" value={location} onchange={handleLocationChange}></lightning-input>
+            
+            <template if:true={weatherData}>
+                <div class="slds-grid slds-gutters slds-m-top_medium">
+                    <div class="slds-col slds-size_1-of-2">
+                        <p class="slds-text-title_bold">Location:</p>
+                        <p>{weatherData.locationName}, {weatherData.locationRegion}, {weatherData.locationCountry}</p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <p class="slds-text-title_bold">Temperature:</p>
+                        <p>{weatherData.temperature} °C</p>
+                    </div>
+                </div>
+                <div class="slds-m-top_medium">
+                    <p class="slds-text-title_bold">Condition:</p>
+                    <p>{weatherData.conditionText}</p>
+                    <img src={weatherData.conditionIcon} alt="Weather Icon" class="weather-icon" />
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

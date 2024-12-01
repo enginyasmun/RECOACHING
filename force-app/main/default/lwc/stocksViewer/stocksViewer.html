@@ -1,0 +1,19 @@
+<template>
+    <div class="stock-data-container">
+        <label for="symbol">Stock Symbol:</label>
+        <input type="text" id="symbol" value={symbol} oninput={handleSymbolChange} />
+
+        <template if:true={stockData.date}>
+            <p>Date: {stockData.date1}</p>
+            <p>Open: {stockData.open}</p>
+            <p>High: {stockData.high}</p>
+            <p>Low: {stockData.low}</p>
+            <p>Close: {stockData.close}</p>
+            <p>Volume: {stockData.volume}</p>
+        </template>
+
+        <template if:true={error}>
+            <p>Error: {error}</p>
+        </template>
+    </div>
+</template>
