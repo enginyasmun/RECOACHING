@@ -1,0 +1,22 @@
+<template>
+    <div class="main-container">
+        <div class="row">
+            <template for:each={groups} for:item="group">
+                <div key={group.index} class="group">
+                    <h3>{group.name}</h3>
+                    <template for:each={group.fields} for:item="field">
+                        <div key={field.index} class="input-container">
+                            <label for={field.id}>{field.name}</label>
+                            <textarea
+                                data-id={field.id}
+                                class="input-field"
+                                oninput={handleInput}
+                                rows="1"
+                            >{field.value}</textarea>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
